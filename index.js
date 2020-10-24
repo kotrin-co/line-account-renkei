@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 5000
+const { Client } = require('pg');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -9,6 +10,25 @@ const config = {
 };
 
 const client = new line.Client(config);
+
+const connection = new Client({
+    user:process.env.PG_USER,
+    host:process.env.PG_HOST,
+    database:process.env.PG_DATABASE,
+    password:process.env.PG_PASSWORD,
+    port:5432
+  });
+connection.connect();
+
+const create_userTable = {
+text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), line_id VARCHAR(255));'
+};
+    
+connection.query(create_userTable)
+.then(()=>{
+    console.log('table users created successfully!!');
+})
+.catch(e=>console.log(e));  
 
 app
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
@@ -44,7 +64,7 @@ app
     });
  }
 
- 
+
  const handleMessageEvent = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
