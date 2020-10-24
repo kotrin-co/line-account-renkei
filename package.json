@@ -8,9 +8,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node test.js"
   },
-  "author": "",
+  "author": "ken",
   "license": "ISC",
   "dependencies": {
     "@line/bot-sdk": "^7.1.0",
