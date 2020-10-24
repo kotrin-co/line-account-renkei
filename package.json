@@ -1,0 +1,23 @@
+{
+  "name": "linebot-login",
+  "version": "1.0.0",
+  "description": "linebot-login",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@line/bot-sdk": "^7.1.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "pg": "^8.4.1",
+    "request-promise": "^4.2.6"
+  }
+}
