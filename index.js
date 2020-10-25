@@ -6,6 +6,7 @@ const { Client } = require('pg');
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
+const request = require('request-promise');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -78,9 +79,51 @@ app
  const handleMessageEvent = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
-    
-    return client.replyMessage(ev.replyToken,{
-        "type":"text",
-        "text":`${profile.displayName}さん、今${text}って言いました？`
-    });
+
+    if(text === 'アカウント連携'){
+        const userId = ev.source.userId;
+        const options = {
+            url:`https://api.line.me/v2/bot/user/${userId}/linkToken`,
+            method:'POST',
+            headers:{
+                'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
+            }
+        }
+
+        request(options)
+            .then(body=>{
+                const parsedBody = JSON.parse(body);
+                console.log('parsedBody:',parsedBody)
+                console.log('linkToken:',parsedBody["linkToken"]);
+                
+                return client.replyMessage(ev.replyToken,{
+                    "type":"flex",
+                    "altText":"link",
+                    "contents":
+                    {
+                      "type": "bubble",
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "button",
+                            "action": {
+                              "type": "uri",
+                              "label": "自社ホームページログイン画面へ",
+                              "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  });
+            })
+            .catch(e=>console.log(e));
+    }else{
+        return client.replyMessage(ev.replyToken,{
+            "type":"text",
+            "text":`${profile.displayName}さん、今${text}って言いました？`
+        });
+    }
  }
