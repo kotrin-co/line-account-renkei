@@ -4,7 +4,7 @@ const formElement = document.createElement('form');
 formElement.setAttribute('id','registration');
 formElement.setAttribute('name','user_info');
 formElement.setAttribute('method','post');
-formElement.setAttribute('action','');
+formElement.setAttribute('action','/api/users');
 
 const div_form0 = document.createElement('div');
 
