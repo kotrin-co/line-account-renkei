@@ -149,16 +149,17 @@ const accountLink = (ev) => {
     console.log('nonce',nonce);
 
     const select_query = {
-        text:`SELECT * FROM nonces;`
+        text:`SELECT * FROM nonces WHERE nonce='${nonce}';`
     };
     connection.query(select_query)
         .then(res=>{
             console.log('res.rows:',res.rows);
-            const filtered = res.rows.filter(object=>{
-                return object.nonce === nonce;
-            });
-            console.log('filtered:',filtered);
-            const login_id = filtered[0].login_id;
+            // const filtered = res.rows.filter(object=>{
+            //     return object.nonce === nonce;
+            // });
+            // console.log('filtered:',filtered);
+            console.log('res.rows:',res.rows);
+            const login_id = res.rows[0].login_id;
             // console.log('login_id',login_id);
             const update_query = {
                 text:`UPDATE users SET (name, login_id, login_password, line_id) = ('aaaa', 'bbbb', 'cccc', '${lineId}') WHERE login_id='${login_id}';`
