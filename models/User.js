@@ -43,5 +43,22 @@ module.exports = {
                 })
                 .catch(e=>console.log(e)); 
         })
+    },
+
+    findAll: ()=>{
+        return new Promise((resolve,reject)=>{
+            const adminData = {
+                users:null
+            };
+            const select_query = {
+                text:'SELECT * FROM users;'
+            };
+            connection.query(select_query)
+                .then(res=>{
+                    adminData.users = res.rows;
+                    resolve(adminData);
+                })
+                .catch(e=>console.log(e));
+        });
     }
 }

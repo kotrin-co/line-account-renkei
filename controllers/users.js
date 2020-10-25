@@ -15,5 +15,13 @@ module.exports = {
          }catch(error){
              res.status(400).json({message:error.message});
          }
+    },
+
+    getUsers: (req,res) => {
+        User.findAll()
+            .then(users=>{
+                res.status(200).json(users);
+            })
+            .catch(e=>console.log(e));
     }
 }
