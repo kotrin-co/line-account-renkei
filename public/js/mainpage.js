@@ -1,5 +1,11 @@
-// const param = new URL(location).search;
-// const splitParam = param.split('=');
+const param = new URL(location).search;
+const splitParam = param.split('&');
+const id = splitParam[0];
+const password = splitParam[1];
+
+document.getElementById('text_id').innerHTML = id;
+document.getElementById('text_password').innerHTML = password;
+
 // const linkToken = splitParam[1];
 // document.getElementById('urlparam').innerHTML = linkToken;
 
