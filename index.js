@@ -146,6 +146,7 @@ app
 const accountLink = (ev) => {
     const lineId = ev.source.userId;
     const nonce = ev.link.nonce;
+    console.log('nonce',nonce);
 
     const select_query = {
         text:`SELECT * FROM nonces WHERE nonce=${nonce};`
