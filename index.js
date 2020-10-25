@@ -161,8 +161,7 @@ const accountLink = (ev) => {
             const login_id = filtered[0].login_id;
             console.log('login_id',login_id);
             const insert_query = {
-                text:`INSERT INTO users (line_id) VALUES($1) WHERE login_id=${login_id};`,
-                values:[`${lineId}`]
+                text:`INSERT INTO users (line_id) VALUES($1) WHERE login_id=${login_id};`
             };
             connection.query(insert_query)
                 .then(res=>{
