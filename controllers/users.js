@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const {randomBytes} = require('crypto')
+
 const { Client } = require('pg');
 const connection = new Client({
     user:process.env.PG_USER,
@@ -42,7 +44,10 @@ module.exports = {
                     if(filtered.length){
                         console.log('認証成功');
                         const N=16
-                        const nonce = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0,N);
+                        const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
+                        const buf = Buffer.from(randomStrings);
+                        const nonce = buf.toString('base64');
+                        // const nonce = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0,N);
                         console.log('nonce:',nonce);
                         const insert_query = {
                             text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
