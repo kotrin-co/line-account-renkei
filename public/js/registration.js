@@ -49,6 +49,7 @@ const registrationButton = document.createElement('input');
 registrationButton.value = '新規登録';
 registrationButton.type = 'submit';
 registrationButton.addEventListener('click',(e)=>{
+    console.log('name',document.user_info.name.value);
     formElement.submit();
 })
 
