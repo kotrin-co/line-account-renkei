@@ -3,6 +3,8 @@ const app = express();
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 5000
 const { Client } = require('pg');
+const path = require('path');
+const router = require('./routers/index');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -31,6 +33,10 @@ connection.query(create_userTable)
 .catch(e=>console.log(e));  
 
 app
+   .use(express.static(path.join(__dirname, 'public')))
+   .set('views', path.join(__dirname, 'views'))
+   .set('view engine', 'ejs')
+   .use('/',router)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
