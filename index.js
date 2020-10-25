@@ -32,7 +32,17 @@ connection.query(create_userTable)
 .then(()=>{
     console.log('table users created successfully!!');
 })
-.catch(e=>console.log(e));  
+.catch(e=>console.log(e));
+
+const create_nonceTable = {
+    text:'CREATE TABLE IF NOT EXISTS nonces (id SERIAL NOT NULL, login_id VARCHAR(50), nonce VARCHAR(255));'
+}
+
+connection.query(create_nonceTable)
+    .then(()=>{
+        console.log('table nonce created successfully');
+    })
+    .catch(e=>console.log(e));
 
 app
    .use(express.static(path.join(__dirname, 'public')))

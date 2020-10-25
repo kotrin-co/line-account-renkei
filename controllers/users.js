@@ -1,4 +1,13 @@
 const User = require('../models/User');
+const { Client } = require('pg');
+const connection = new Client({
+    user:process.env.PG_USER,
+    host:process.env.PG_HOST,
+    database:process.env.PG_DATABASE,
+    password:process.env.PG_PASSWORD,
+    port:5432
+  });
+connection.connect();
 
 module.exports = {
 
@@ -32,7 +41,19 @@ module.exports = {
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        res.status(200).redirect(`https://linebot-account-renkei.herokuapp.com/mainpage?${originId}&${password}&${linkToken}`);
+                        const N=16
+                        const nonce = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0,N);
+                        console.log('nonce:',nonce);
+                        const insert_query = {
+                            text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
+                            values:[`${originId}`,`${nonce}`]
+                        }
+                        connection.query(insert_query)
+                            .then(res=>{
+                                console.log('insert into nonces 成功');
+                                res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                            })
+                            .catch(e=>console.log(e));
                     }else{
                         console.log('ログイン失敗');
                     }
