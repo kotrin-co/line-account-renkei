@@ -37,6 +37,7 @@ app
    .use(express.static(path.join(__dirname, 'public')))
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
+   .use(express.json())
    .use('/',router)
    .use('/api/users',usersRouter)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
