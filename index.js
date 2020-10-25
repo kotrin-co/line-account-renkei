@@ -159,11 +159,11 @@ const accountLink = (ev) => {
             });
             console.log('filtered:',filtered);
             const login_id = filtered[0].login_id;
-            console.log('login_id',login_id);
-            const insert_query = {
-                text:`INSERT INTO users (line_id) VALUES($1) WHERE login_id=${login_id};`
-            };
-            connection.query(insert_query)
+            // console.log('login_id',login_id);
+            const update_query = {
+                text:`UPDATE users SET (line_id) = ('${lineId}') WHERE login_id=${login_id};`
+            }
+            connection.query(update_query)
                 .then(res=>{
                     console.log('アカウント連携成功！！');
                 })
