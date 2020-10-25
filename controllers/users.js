@@ -9,7 +9,7 @@ module.exports = {
             User.create({name,id,password})
                 .then(message=>{
                     console.log('message:',message);
-                    res.status(200).send(message);
+                    res.status(200).redirect('https://linebot-account-renkei.herokuapp.com/');
                 })
                 .catch(e=>console.log(e.stack));
          }catch(error){
