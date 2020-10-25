@@ -22,14 +22,14 @@ module.exports = {
             const {id,password} = req.body;
             console.log('id pass',id,password);
             User.check()
-                .then(res=>{
-                    console.log('res:',res);
-                    const filtered = res.filter(object=>{
+                .then(response=>{
+                    console.log('response:',response);
+                    const filtered = response.filter(object=>{
                         return object.login_id === id && object.login_password === password;
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        res.redirect('https://linebot-account-renkei.herokuapp.com/mainpage');
+                        res.status(200).redirect('https://linebot-account-renkei.herokuapp.com/mainpage');
                     }else{
                         console.log('ログイン失敗');
                     }
