@@ -46,7 +46,7 @@ module.exports = {
                         console.log('認証成功');
                         // nonce生成
                         const N=16
-                        const andomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
+                        const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
                         const buf = Buffer.from(randomStrings);
                         const nonce = buf.toString('base64');
                         console.log('nonce:',nonce);
