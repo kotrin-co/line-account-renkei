@@ -24,15 +24,18 @@ module.exports = {
             User.check()
                 .then(res=>{
                     console.log('res:',res);
+                    const filtered = res.filter(object=>{
+                        return object.login_id === id && object.login_password === password;
+                    });
+                    if(filtered.length){
+                        console.log('認証成功');
+                        res.status(200).redirect('https://linebot-account-renkei.herokuapp.com/mainpage');
+                    }else{
+                        console.log('ログイン失敗');
+                    }
                 })
                 .catch(e=>console.log(e));
 
-            // User.create({id,password})
-            //     .then(message=>{
-            //         console.log('message:',message);
-            //         res.status(200).redirect('https://linebot-account-renkei.herokuapp.com/');
-            //     })
-            //     .catch(e=>console.log(e.stack));
          }catch(error){
              res.status(400).json({message:error.message});
          }
