@@ -110,7 +110,7 @@ app
                             "type": "button",
                             "action": {
                               "type": "uri",
-                              "label": "自社ホームページログイン画面へ",
+                              "label": "自社HPログイン画面へ",
                               "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                             }
                           }
