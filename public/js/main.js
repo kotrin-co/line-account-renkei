@@ -4,7 +4,7 @@ const formElement = document.createElement('form');
 formElement.setAttribute('id','login');
 formElement.setAttribute('name','login_info');
 formElement.setAttribute('method','post');
-formElement.setAttribute('action','');
+formElement.setAttribute('action','/api/users/login');
 
 const div_form1 = document.createElement('div');
 
@@ -44,22 +44,3 @@ formElement.appendChild(div_form2);
 formElement.appendChild(loginButton);
 
 divLogin.appendChild(formElement);
-
-let USERS = [];
-const API_URL = 'https://linebot-account-renkei.herokuapp.com/api/users';
-
-window.addEventListener('load',(e)=>{
-    fetchData();
-});
-
-const fetchData = async () =>{
-    try{
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        console.log('data:',data);
-        USERS = data.users;
-        console.log('USERS',USERS);
-    }catch(error){
-        alert(`読み込み失敗...${error.message}`);
-    }
-};

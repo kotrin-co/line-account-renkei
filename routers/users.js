@@ -4,7 +4,10 @@ const controller = require('../controllers/users');
 
 router
     .route('/')
-    .get(controller.getUsers)
     .post(controller.postUser);
+
+router
+    .route('/login')
+    .post(controller.postLogin);
 
 module.exports = router;

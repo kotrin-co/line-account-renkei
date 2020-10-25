@@ -45,18 +45,15 @@ module.exports = {
         })
     },
 
-    findAll: ()=>{
+    check: ()=>{
         return new Promise((resolve,reject)=>{
-            const adminData = {
-                users:null
-            };
             const select_query = {
                 text:'SELECT * FROM users;'
-            };
+            }
             connection.query(select_query)
                 .then(res=>{
-                    adminData.users = res.rows;
-                    resolve(adminData);
+                    console.log('取得成功');
+                    resolve(res.rows);
                 })
                 .catch(e=>console.log(e));
         });
