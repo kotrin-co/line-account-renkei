@@ -1,14 +1,11 @@
-const param = new URL(location).search;
-console.log('param:',param);
-if(param){
-    const splitParam = param.split('=');
-    const linkToken = splitParam[1];
-    const pElement = document.createElement('p');
-    pElement.innerHTML = linkToken;
-    divLogin.appendChild(pElement);
-}
-
 const divLogin = document.getElementById('login_area');
+
+const param = new URL(location).search;
+const pElement = document.createElement('p');
+const splitParam = param.split('=');
+const linkToken = splitParam[1];
+pElement.innerHTML = linkToken;
+divLogin.appendChild(pElement);
 
 const formElement = document.createElement('form');
 formElement.setAttribute('id','login');
