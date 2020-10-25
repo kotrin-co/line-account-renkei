@@ -20,16 +20,19 @@ module.exports = {
     postLogin: (req,res) => {
         try{
             const {id,password} = req.body;
-            console.log('id pass',id,password);
+            const splitId = id.split('&');
+            const originId = splitId[0];
+            const linkToken = splitId[1];
+            console.log('id linktoken pass',id,linkToken,password);
             User.check()
                 .then(response=>{
                     console.log('response:',response);
                     const filtered = response.filter(object=>{
-                        return object.login_id === id && object.login_password === password;
+                        return object.login_id === originId && object.login_password === password;
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        res.status(200).redirect(`https://linebot-account-renkei.herokuapp.com/mainpage?${id}&${password}`);
+                        res.status(200).redirect(`https://linebot-account-renkei.herokuapp.com/mainpage?${id}&${password}&${linkToken}`);
                     }else{
                         console.log('ログイン失敗');
                     }
