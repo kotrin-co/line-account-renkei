@@ -152,23 +152,25 @@ const accountLink = (ev) => {
         text:`SELECT * FROM nonces WHERE nonce='${nonce}';`
     };
     connection.query(select_query)
-        .then(res=>{
-            console.log('res.rows:',res.rows);
-            // const filtered = res.rows.filter(object=>{
-            //     return object.nonce === nonce;
-            // });
-            // console.log('filtered:',filtered);
-            console.log('res.rows:',res.rows);
-            const login_id = res.rows[0].login_id;
-            // console.log('login_id',login_id);
-            const update_query = {
-                text:`UPDATE users SET (name, login_id, login_password, line_id) = ('aaaa', 'bbbb', 'cccc', '${lineId}') WHERE login_id='${login_id}';`
+        .then(res1=>{
+            const login_id = res1.rows[0].login_id;
+            const selectUsers = {
+                text:`SELECT * FROM users WHERE login_id='${login_id}';`
             }
-            connection.query(update_query)
-                .then(res=>{
-                    console.log('アカウント連携成功！！');
+            connection.query(selectUsers)
+                .then(res2=>{
+                    const name = res2.rows[0].name;
+                    const password = res2.rows[0].login_password;
+                    const update_query = {
+                        text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '${lineId}') WHERE login_id='${login_id}';`
+                    }
+                    connection.query(update_query)
+                        .then(res3=>{
+                            console.log('アカウント連携成功！！');
+                        })
+                        .catch(e=>console.log(e));
                 })
-                .catch(e=>console.log(e));
+
         })
         .catch(e=>console.log(e));
 }
