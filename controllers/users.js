@@ -32,7 +32,7 @@ module.exports = {
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        res.status(200).redirect(`https://linebot-account-renkei.herokuapp.com/mainpage?${id}&${password}&${linkToken}`);
+                        res.status(200).redirect(`https://linebot-account-renkei.herokuapp.com/mainpage?${originId}&${password}&${linkToken}`);
                     }else{
                         console.log('ログイン失敗');
                     }
