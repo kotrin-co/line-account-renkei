@@ -29,7 +29,7 @@ module.exports = {
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        res.render('https://linebot-account-renkei.herokuapp.com/mainpage');
+                        res.redirect('https://linebot-account-renkei.herokuapp.com/mainpage');
                     }else{
                         console.log('ログイン失敗');
                     }
