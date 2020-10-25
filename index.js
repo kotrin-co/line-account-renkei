@@ -35,7 +35,7 @@ connection.query(create_userTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
-   .use(multipart())
+//    .use(multipart())
    .use('/',router)
    .use('/api/users',usersRouter)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
