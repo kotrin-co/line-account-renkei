@@ -61,6 +61,7 @@ app
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
+        console.log('ev:',ev);
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
