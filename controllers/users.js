@@ -5,6 +5,7 @@ module.exports = {
     postTodo: (req,res) => {
         try{
             const {name,id,password} = req.body;
+            console.log('name id pass',name,id,password);
             User.create({name,id,password})
                 .then(message=>{
                     console.log('message:',message);
