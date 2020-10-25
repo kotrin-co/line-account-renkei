@@ -31,6 +31,7 @@ module.exports = {
     postLogin: (req,res) => {
         try{
             const {id,password} = req.body;
+            // ログインidとlinkTokenの分離
             const splitId = id.split('&');
             const originId = splitId[0];
             const linkToken = splitId[1];
@@ -43,12 +44,13 @@ module.exports = {
                     });
                     if(filtered.length){
                         console.log('認証成功');
+                        // nonce生成
                         const N=16
                         const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
                         const buf = Buffer.from(randomStrings);
                         const nonce = buf.toString('base64');
-                        // const nonce = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0,N);
                         console.log('nonce:',nonce);
+                        // nonceテーブルへの挿入
                         const insert_query = {
                             text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
                             values:[`${originId}`,`${nonce}`]

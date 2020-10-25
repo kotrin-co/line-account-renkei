@@ -46,7 +46,7 @@ loginButton.addEventListener('click',(e)=>{
     const id = document.login_info.id.value + '&' +linkToken;
     document.login_info.id.value = id;
     formElement.submit();
-})
+});
 
 formElement.appendChild(div_form1);
 formElement.appendChild(div_form2);

@@ -70,6 +70,10 @@ app
             case 'message':
                 promises.push(handleMessageEvent(ev));
                 break;
+
+            case 'accountLink':
+                promises.push(accountLink(ev));
+                break;
         }
     }
     Promise
@@ -138,3 +142,28 @@ app
         });
     }
  }
+
+const accountLink = (ev) => {
+    const lineId = ev.source.userId;
+    const nonce = ev.link.nonce;
+
+    const select_query = {
+        text:`SELECT * FROM nonces WHERE nonce=${nonce};`
+    };
+    connection.query(select_query)
+        .then(res=>{
+            console.log('res.rows:',res.rows);
+            const login_id = res.rows[0].login_id;
+            console.log('login_id',login_id);
+            const insert_query = {
+                text:`INSERT INTO users (line_id) VALUES($1) WHERE login_id=${login_id};`,
+                values:[`${lineId}`]
+            };
+            connection.query(insert_query)
+                .then(res=>{
+                    console.log('アカウント連携成功！！');
+                })
+                .catch(e=>console.log(e));
+        })
+        .catch(e=>console.log(e));
+}
