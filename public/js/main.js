@@ -4,6 +4,7 @@ const formElement = document.createElement('form');
 formElement.setAttribute('id','login');
 formElement.setAttribute('name','login_info');
 formElement.setAttribute('method','post');
+formElement.setAttribute('action','');
 
 const div_form1 = document.createElement('div');
 
@@ -31,8 +32,14 @@ input_form2.setAttribute('class','password-input');
 input_form2.setAttribute('name','password');
 div_form2.appendChild(input_form2);
 
+const loginButton = document.createElement('input');
+loginButton.value = 'ログイン';
+loginButton.addEventListener('click',(e)=>{
+    formElement.submit();
+})
+
 formElement.appendChild(div_form1);
 formElement.appendChild(div_form2);
+formElement.appendChild(loginButton);
 
 divLogin.appendChild(formElement);
-
