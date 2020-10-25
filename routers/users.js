@@ -4,6 +4,6 @@ const controller = require('../controllers/users');
 
 router
     .route('/')
-    .post(controller.postTodo);
+    .post(controller.postUser);
 
 module.exports = router;

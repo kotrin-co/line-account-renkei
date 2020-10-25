@@ -36,7 +36,7 @@ module.exports = {
                 text:'INSERT INTO users (name,login_id,login_password) VALUES($1,$2,$3);',
                 values:createUser
             };
-            connection.query(isert_query)
+            connection.query(insert_query)
                 .then(res=>{
                     console.log('新規登録成功');
                     resolve('post succeeded!');

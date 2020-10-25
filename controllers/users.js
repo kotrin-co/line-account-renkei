@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 module.exports = {
 
-    postTodo: (req,res) => {
+    postUser: (req,res) => {
         try{
             const {name,id,password} = req.body;
             console.log('name id pass',name,id,password);
