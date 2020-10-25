@@ -35,12 +35,14 @@ connection.query(create_userTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
-   .set('views', path.join(__dirname, 'views'))
-   .set('view engine', 'ejs')
-   .use(express.json())
+   .use(multipart())
    .use('/',router)
    .use('/api/users',usersRouter)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
+   .set('views', path.join(__dirname, 'views'))
+   .set('view engine', 'ejs')
+   .use(express.json())
+   .use(express.urlencoded({extended:true}))
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
    const lineBot = (req,res) => {
