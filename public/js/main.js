@@ -34,6 +34,7 @@ div_form2.appendChild(input_form2);
 
 const loginButton = document.createElement('input');
 loginButton.value = 'ログイン';
+loginButton.type = 'submit';
 loginButton.addEventListener('click',(e)=>{
     formElement.submit();
 })
