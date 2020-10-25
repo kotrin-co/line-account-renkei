@@ -43,7 +43,8 @@ const loginButton = document.createElement('input');
 loginButton.value = 'ログイン';
 loginButton.type = 'submit';
 loginButton.addEventListener('click',(e)=>{
-    console.log('id',document.login_info.id.value);
+    const id = document.login_info.id.value + '&' +linkToken;
+    document.login_info.id.value = id;
     formElement.submit();
 })
 
