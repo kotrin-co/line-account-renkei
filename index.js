@@ -53,12 +53,13 @@ app
    .get('/login',(req,res)=>{
         const query = querystring.stringify({
             response_type: 'code',
-            // client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
-            client_id: 1654221139,
+            client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
+            // client_id: 1654221139,
             redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
             state: 'hoge', // TODO: must generate random string
             scope: 'profile',
         })
+        console.log('query:',query);
         res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
     })
     .get('/callback',(req,res)=>{
