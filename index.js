@@ -47,7 +47,8 @@ connection.query(create_nonceTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
-   .use('/',router)
+//    .use('/',router)
+    .get('/', (req, res) => res.render('pages/index'))
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
