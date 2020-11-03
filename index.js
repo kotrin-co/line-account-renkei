@@ -53,8 +53,8 @@ app
    .get('/login',(req,res)=>{
         const query = querystring.stringify({
             response_type: 'code',
-            client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
             // client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
+            client_id: 1654221139,
             redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
             state: 'hoge', // TODO: must generate random string
             scope: 'profile',
