@@ -48,14 +48,14 @@ connection.query(create_nonceTable)
 app
    .use(express.static(path.join(__dirname, 'public')))
    .disable('etag')
+   .set('views', path.join(__dirname, 'views'))
+   .set('view engine', 'ejs')
 //    .use('/',router)
     .get('/', (req, res) => res.render('pages/index'))
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
    .use('/api/users',usersRouter)
-   .set('views', path.join(__dirname, 'views'))
-   .set('view engine', 'ejs')
    .get('/login',(req,res)=>{
         const query = querystring.stringify({
             response_type: 'code',
