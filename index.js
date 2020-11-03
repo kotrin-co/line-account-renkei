@@ -15,7 +15,7 @@ const config = {
 };
 
 const clientID = process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID;
-console.log('clientID');
+console.log('clientID:',clientID);
 
 const client = new line.Client(config);
 
