@@ -48,26 +48,26 @@ connection.query(create_nonceTable)
 app
    .use(express.static(path.join(__dirname, 'public')))
    .use('/',router)
-   .get('/login',(req,res)=>{
-    const query = querystring.stringify({
-        response_type: 'code',
-        client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
-        redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
-        state: 'hoge', // TODO: must generate random string
-        scope: 'profile',
-      })
-      res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
-    })
-    .get('/callback',(req,res)=>{
-        console.log('req.query:',req.query);
-        res.send('code:'+req.query.code);
-    })
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
    .use('/api/users',usersRouter)
    .set('views', path.join(__dirname, 'views'))
-   .set('view engine', 'ejs')  
+   .set('view engine', 'ejs')
+   .get('/login',(req,res)=>{
+        const query = querystring.stringify({
+            response_type: 'code',
+            client_id: process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID,
+            redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
+            state: 'hoge', // TODO: must generate random string
+            scope: 'profile',
+        })
+        res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
+    })
+    .get('/callback',(req,res)=>{
+        console.log('req.query:',req.query);
+        res.send('code:'+req.query.code);
+    })
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
    const lineBot = (req,res) => {
