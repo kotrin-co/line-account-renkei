@@ -50,12 +50,6 @@ app
    .disable('etag')
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
-   .use('/',router)
-    // .get('/', (req, res) => res.render('pages/index'))
-   .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
-   .use(express.json())
-   .use(express.urlencoded({extended:true}))
-   .use('/api/users',usersRouter)
    .get('/login',(req,res)=>{
         const query = querystring.stringify({
             response_type: 'code',
@@ -70,6 +64,12 @@ app
         console.log('req.query:',req.query);
         res.send('code:'+req.query.code);
     })
+   .use('/',router)
+    // .get('/', (req, res) => res.render('pages/index'))
+   .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
+   .use(express.json())
+   .use(express.urlencoded({extended:true}))
+   .use('/api/users',usersRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
    const lineBot = (req,res) => {
