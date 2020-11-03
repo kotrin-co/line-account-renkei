@@ -47,6 +47,7 @@ connection.query(create_nonceTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
+   .disable('etag')
 //    .use('/',router)
     .get('/', (req, res) => res.render('pages/index'))
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
