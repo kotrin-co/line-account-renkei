@@ -30,12 +30,12 @@ module.exports = {
 
     postLogin: (req,res) => {
         try{
-            const {id,password,linkToken} = req.body;
+            const {id1,password1,token} = req.body;
             // ログインidとlinkTokenの分離
             // const splitId = id.split('&');
             // const originId = splitId[0];
             // const linkToken = splitId[1];
-            console.log('id linktoken pass',id,linkToken,password);
+            console.log('id linktoken pass',id1,password1,token);
             User.check()
                 .then(response=>{
                     console.log('response:',response);
