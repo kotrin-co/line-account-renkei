@@ -70,7 +70,7 @@ loginButton.addEventListener('click',(e)=>{
     fetch('/api/users/login',{
         method:'POST',
         data: data,
-        // credentials: 'same-origin'
+        credentials: 'same-origin'
     })
     .then(response=>{
         console.log('response:',response);
