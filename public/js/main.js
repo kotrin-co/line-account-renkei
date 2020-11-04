@@ -3,8 +3,10 @@ const divLogin = document.getElementById('login_area');
 
 // URLの？以降を取り出し、linkTokenを取得する処理
 const param = new URL(location).search;
+console.log('param:',param);
 const pElement = document.createElement('p');
 const splitParam = param.split('=');
+console.log('splitparam:',splitParam);
 const linkToken = splitParam[1];
 pElement.innerHTML = linkToken;
 divLogin.appendChild(pElement);
