@@ -190,6 +190,7 @@ app
 const accountLink = (ev) => {
     const lineId = ev.source.userId;
     const nonce = ev.link.nonce;
+    console.log('lineID:',lineId);
     console.log('nonce',nonce);
 
     const select_query = {
