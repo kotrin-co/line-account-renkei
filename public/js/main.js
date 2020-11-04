@@ -59,9 +59,7 @@ loginButton.addEventListener('click',(e)=>{
     // const id = document.login_info.id.value + '&' +linkToken;
     // document.login_info.id.value = id;
     // formElement.submit();
-    const data = new FormData();
-    data.append('id1',document.login_info.id.value);
-    data.append('password1',document.login_info.password.value);
+    const data = new FormData(formElement);
     data.append('linkToken',linkToken);
     console.log(...data.entries());
 
