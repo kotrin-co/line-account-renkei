@@ -5,9 +5,14 @@ const divLogin = document.getElementById('login_area');
 const param = new URL(location).search;
 console.log('param:',param);
 const pElement = document.createElement('p');
-const splitParam = param.split('=');
-console.log('splitparam:',splitParam);
-const linkToken = splitParam[1];
+let linkToken = '';
+if(param){
+    const splitParam = param.split('=');
+    console.log('splitparam:',splitParam);
+    linkToken = splitParam[1]; 
+}else{
+    linkToken = "0";
+}
 pElement.innerHTML = linkToken;
 divLogin.appendChild(pElement);
 
