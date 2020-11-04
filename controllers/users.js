@@ -36,7 +36,7 @@ module.exports = {
             // const splitId = id.split('&');
             // const originId = splitId[0];
             // const linkToken = splitId[1];
-            console.log('id linktoken pass',id1,password1,token);
+            console.log('id linktoken pass',id,password,token);
             User.check()
                 .then(response=>{
                     console.log('response:',response);
