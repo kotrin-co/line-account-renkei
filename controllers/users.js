@@ -31,12 +31,12 @@ module.exports = {
     postLogin: (req,res) => {
         try{
             console.log('req:',req);
-            const {id,password,token} = req.body;
+            const {id,password,linkToken} = req.body;
             // ログインidとlinkTokenの分離
             // const splitId = id.split('&');
             // const originId = splitId[0];
             // const linkToken = splitId[1];
-            console.log('id linktoken pass',id,password,token);
+            console.log('id linktoken pass',id,password,linkToken);
             User.check()
                 .then(response=>{
                     console.log('response:',response);

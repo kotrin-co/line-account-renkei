@@ -59,17 +59,21 @@ loginButton.addEventListener('click',(e)=>{
     // const id = document.login_info.id.value + '&' +linkToken;
     // document.login_info.id.value = id;
     // formElement.submit();
-    const data = new FormData();
+    // const data = new FormData();
+    // data.append('id1',document.login_info.id.value);
+    // data.append('password1',document.login_info.password.value);
+    // data.append('token',0);
+    // console.log(...data.entries());
 
-    data.append('id1',document.login_info.id.value);
-    data.append('password1',document.login_info.password.value);
-    data.append('token',0);
-
-    console.log(...data.entries());
+    const data ={
+        id: '1',
+        password: '2',
+        linkToken: '3'
+    }
 
     fetch('/api/users/login',{
         method:'POST',
-        data: data,
+        data: JSON.stringify(data),
         credentials: 'same-origin'
     })
     .then(response=>{
