@@ -30,17 +30,17 @@ module.exports = {
 
     postLogin: (req,res) => {
         try{
-            const {id,password} = req.body;
+            const {id,password,linkToken} = req.body;
             // ログインidとlinkTokenの分離
-            const splitId = id.split('&');
-            const originId = splitId[0];
-            const linkToken = splitId[1];
-            console.log('id linktoken pass',originId,linkToken,password);
+            // const splitId = id.split('&');
+            // const originId = splitId[0];
+            // const linkToken = splitId[1];
+            console.log('id linktoken pass',id,linkToken,password);
             User.check()
                 .then(response=>{
                     console.log('response:',response);
                     const filtered = response.filter(object=>{
-                        return object.login_id === originId && object.login_password === password;
+                        return object.login_id === id && object.login_password === password;
                     });
                     if(filtered.length){
                         console.log('認証成功');
@@ -53,7 +53,7 @@ module.exports = {
                         // nonceテーブルへの挿入
                         const insert_query = {
                             text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
-                            values:[`${originId}`,`${nonce}`]
+                            values:[`${id}`,`${nonce}`]
                         }
                         connection.query(insert_query)
                             .then(response=>{
