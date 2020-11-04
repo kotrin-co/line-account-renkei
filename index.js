@@ -7,7 +7,7 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const request = require('request-promise');
-const querystring = require('querystring');
+// const querystring = require('querystring');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -53,24 +53,23 @@ app
    .disable('etag')
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
-   .get('/login',(req,res)=>{
-        const query = querystring.stringify({
-            response_type: 'code',
-            client_id: clientID,
-            // client_id: 1654221139,
-            redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
-            state: 'hoge', // TODO: must generate random string
-            scope: 'profile',
-        })
-        console.log('query:',query);
-        res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
-    })
+//    .get('/login',(req,res)=>{
+//         const query = querystring.stringify({
+//             response_type: 'code',
+//             client_id: clientID,
+//             // client_id: 1654221139,
+//             redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
+//             state: 'hoge', // TODO: must generate random string
+//             scope: 'profile',
+//         })
+//         console.log('query:',query);
+//         res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
+//     })
     .get('/callback',(req,res)=>{
         console.log('req.query:',req.query);
         res.send('code:'+req.query.code);
     })
    .use('/',router)
-    // .get('/', (req, res) => res.render('pages/index'))
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
