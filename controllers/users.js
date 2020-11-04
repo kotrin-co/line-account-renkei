@@ -30,7 +30,7 @@ module.exports = {
 
     postLogin: (req,res) => {
         try{
-            console.log('req.body:',req.body);
+            console.log('req:',req);
             const {id,password,token} = req.body;
             // ログインidとlinkTokenの分離
             // const splitId = id.split('&');
