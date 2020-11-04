@@ -44,7 +44,7 @@ module.exports = {
                     });
                     if(filtered.length){
                         console.log('認証成功');
-                        // nonce生成
+                        // nonce生成d
                         const N=16
                         const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
                         const buf = Buffer.from(randomStrings);
