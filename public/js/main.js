@@ -63,14 +63,14 @@ loginButton.addEventListener('click',(e)=>{
 
     data.append('id',document.login_info.id.value);
     data.append('password',document.login_info.password.value);
-    data.append('linkToken',linkToken);
+    data.append('linkToken',0);
 
     console.log(...data.entries());
 
     fetch('/api/users/login',{
         method:'POST',
         data: data,
-        credentials: 'same-origin'
+        // credentials: 'same-origin'
     })
     .then(response=>{
         console.log('response:',response);
