@@ -65,6 +65,7 @@ loginButton.addEventListener('click',()=>{
 
     fetch('/api/users/login',{
         method:'POST',
+        mode: 'no-cors',
         body: data,
         credentials: 'same-origin'
     })
