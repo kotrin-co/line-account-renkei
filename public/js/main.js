@@ -55,7 +55,7 @@ div_form2.appendChild(input_form2);
 const loginButton = document.createElement('input');
 loginButton.value = 'ログイン';
 loginButton.type = 'button';
-loginButton.addEventListener('click',(e)=>{
+loginButton.addEventListener('click',()=>{
     // const id = document.login_info.id.value + '&' +linkToken;
     // document.login_info.id.value = id;
     // formElement.submit();
@@ -65,7 +65,7 @@ loginButton.addEventListener('click',(e)=>{
 
     fetch('/api/users/login',{
         method:'POST',
-        data: data,
+        body: data,
         credentials: 'same-origin'
     })
     .then(response=>{
