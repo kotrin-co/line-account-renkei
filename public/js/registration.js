@@ -1,4 +1,3 @@
-const { Connection } = require("pg");
 
 // 大元のdiv要素
 const divRegistration = document.getElementById('registration_area');
