@@ -8,6 +8,7 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const request = require('request-promise');
 // const querystring = require('querystring');
+const multipart = require('connect-multiparty');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -50,7 +51,7 @@ connection.query(create_nonceTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
-   .disable('etag')
+   .use(multipart())
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
 //    .get('/login',(req,res)=>{

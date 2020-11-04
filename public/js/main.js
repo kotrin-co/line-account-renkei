@@ -49,9 +49,24 @@ const loginButton = document.createElement('input');
 loginButton.value = 'ログイン';
 loginButton.type = 'submit';
 loginButton.addEventListener('click',(e)=>{
-    const id = document.login_info.id.value + '&' +linkToken;
-    document.login_info.id.value = id;
-    formElement.submit();
+    // const id = document.login_info.id.value + '&' +linkToken;
+    // document.login_info.id.value = id;
+    // formElement.submit();
+    const data = {
+        id: document.login_info.id.value,
+        password: document.login_info.password.value,
+        linkToken: linkToken
+    }
+
+    fetch('/api/users/login',{
+        method:'POST',
+        data: JSON.stringify(data),
+        credentials: 'same-origin'
+    })
+    .then(response=>{
+        console.log('response:',response);
+    })
+    .catch(e=>console.log(e));
 });
 
 // フォーム要素にform1,form2,loginButtonを格納
