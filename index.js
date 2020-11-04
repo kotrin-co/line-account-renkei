@@ -66,10 +66,10 @@ app
 //         console.log('query:',query);
 //         res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
 //     })
-    .get('/callback',(req,res)=>{
-        console.log('req.query:',req.query);
-        res.send('code:'+req.query.code);
-    })
+    // .get('/callback',(req,res)=>{
+    //     console.log('req.query:',req.query);
+    //     res.send('code:'+req.query.code);
+    // })
    .use('/',router)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())

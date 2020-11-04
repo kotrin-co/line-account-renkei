@@ -49,7 +49,6 @@ module.exports = {
                         const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
                         const buf = Buffer.from(randomStrings);
                         const nonce = buf.toString('base64');
-                        console.log('nonce:',nonce);
                         // nonceテーブルへの挿入
                         const insert_query = {
                             text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
@@ -58,6 +57,7 @@ module.exports = {
                         connection.query(insert_query)
                             .then(response=>{
                                 console.log('insert into nonces 成功');
+                                console.log('linktoken nonce:',linkToken,nonce);
                                 res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
                             })
                             .catch(e=>console.log(e));
