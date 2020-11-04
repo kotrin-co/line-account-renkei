@@ -58,7 +58,7 @@ module.exports = {
                         connection.query(insert_query)
                             .then(response=>{
                                 console.log('insert into nonces 成功');
-                                res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                                // res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
                             })
                             .catch(e=>console.log(e));
                     }else{
