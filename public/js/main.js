@@ -52,11 +52,10 @@ loginButton.addEventListener('click',(e)=>{
     // const id = document.login_info.id.value + '&' +linkToken;
     // document.login_info.id.value = id;
     // formElement.submit();
-    const data = {
-        id: document.login_info.id.value,
-        password: document.login_info.password.value,
-        linkToken: linkToken
-    }
+    const data = new FormData(formElement);
+    data.append('linkToken',linkToken);
+
+    console.log(...data.entries());
 
     fetch('/api/users/login',{
         method:'POST',
