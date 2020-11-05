@@ -214,7 +214,7 @@ app
                     "action": {
                       "type": "uri",
                       "label": "連携しますよん",
-                      "uri": `https://linebot-account-renkei.herokuapp.com/api/link?${ev.source.userId}`
+                      "uri": `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${ev.source.userId}`
                     //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                     }
                   }
