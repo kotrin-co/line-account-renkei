@@ -6,6 +6,7 @@ const { Client } = require('pg');
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
+const linkRouter = require('./routers/link');
 const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
@@ -75,6 +76,7 @@ app
    .use(express.json())
    .use(express.urlencoded({extended:true}))
    .use('/api/users',usersRouter)
+   .use('/api/link',linkRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
    const lineBot = (req,res) => {
@@ -178,6 +180,48 @@ app
                     .catch(e=>console.log(e));
             })
             .catch(e=>console.log(e));
+
+    }else if(text === '連携'){
+
+        // const userId = ev.source.userId;
+        // const options = {
+        //     url:`https://api.line.me/v2/bot/user/${userId}/linkToken`,
+        //     method:'POST',
+        //     headers:{
+        //         'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
+        //     }
+        // }
+
+        // request(options)
+        //     .then(body=>{
+        //         const parsedBody = JSON.parse(body);
+        //         console.log('parsedBody:',parsedBody)
+        //         console.log('linkToken:',parsedBody["linkToken"]);
+        //     })
+
+        return client.replyMessage(ev.replyToken,{
+            "type":"flex",
+            "altText":"link",
+            "contents":
+            {
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "label": "連携しますよん",
+                      "uri": `https://linebot-account-renkei.herokuapp.com/api/link?${ev.source.userId}`
+                    //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
+                    }
+                  }
+                ]
+              }
+            }
+          });
     }
     else{
         return client.replyMessage(ev.replyToken,{
