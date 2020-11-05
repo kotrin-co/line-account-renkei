@@ -59,9 +59,9 @@ module.exports = {
                             .then(response=>{
                                 console.log('insert into nonces 成功');
                                 console.log('linktoken nonce:',linkToken,nonce);
-                                const array = [linkToken,nonce];
+                                const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
                                 // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
-                                res.status(200).send(array);
+                                res.status(200).send(linkSentence);
                                 // res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
                             })
                             .catch(e=>console.log(e));

@@ -70,7 +70,16 @@ loginButton.addEventListener('click',()=>{
         credentials: 'same-origin'
     })
     .then(response=>{
-        console.log('response:',response);
+        if(response.ok){
+            response.text()
+                .then(text=>{
+                    const url = `https://access.line.me/dialog/bot/${text}`;
+                    console.log('url:',url);
+                    document.location.href = url;
+                })
+        }else{
+            alert('HTTPレスポンスエラーです');
+        }
     })
     .catch(e=>console.log(e));
 });
