@@ -18,7 +18,7 @@ module.exports = {
                 const parsedBody = JSON.parse(body);
                 console.log('parsedBody:',parsedBody);
                 console.log('linkToken:',parsedBody["linkToken"]);
-                res.redirect(301,`https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`)
+                res.redirect(`https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`)
             });
     }
 }
