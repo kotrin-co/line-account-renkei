@@ -6,4 +6,8 @@ router
     .route('/')
     .get(controller.accountLink);
 
+router
+    .get('/index',(req,res)=>{
+        res.render('pages/index')});
+
 module.exports = router;
