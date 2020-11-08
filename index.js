@@ -216,11 +216,12 @@ app
                   {
                     "type": "button",
                     "action": {
-                        "type":"postback",
-                        "label":"連携しますよん",
-                        "data":"login"
-                    //   "type": "uri",
-                    //   "label": "連携しますよん",
+                        // "type":"postback",
+                        // "label":"連携しますよん",
+                        // "data":"login"
+                      "type": "uri",
+                      "label": "連携しますよん",
+                      "uri": "line://app/1655219547-VEldKEW0"
                     //   "uri": `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${ev.source.userId}`
                     //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                     }
@@ -281,11 +282,6 @@ const handlePostbackEvent = (ev) => {
         https.get(`https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${line_uid}`,(res)=>{
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
-            https.get(res.headers.location,(res)=>{
-                res.on('data',(d)=>{
-                    process.stdout.write(d);
-                });
-            })
             res.on('data',(d)=>{
                 process.stdout.write(d);
             })
