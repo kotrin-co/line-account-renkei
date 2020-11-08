@@ -274,6 +274,8 @@ const accountLink = (ev) => {
 const handlePostbackEvent = (ev) => {
 
     if(ev.postback.data === 'login'){
+
+        
         const line_uid = ev.source.userId;
         const https = require('https');
         https.get(`https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${line_uid}`,(res)=>{
