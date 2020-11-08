@@ -281,6 +281,11 @@ const handlePostbackEvent = (ev) => {
         https.get(`https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${line_uid}`,(res)=>{
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
+            https.get(res.headers.location,(res)=>{
+                res.on('data',(d)=>{
+                    process.stdout.write(d);
+                });
+            })
             res.on('data',(d)=>{
                 process.stdout.write(d);
             })
