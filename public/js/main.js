@@ -7,14 +7,16 @@ window.onload = () => {
             liffId:myLiffId
         })
         .then(()=>{
-
+            const idElement = ducument.getElementById('lineid');
+            idElement.innerHTML = liff.getLanguage();
+            divLogin.appendChild(idElement);
             liff.getProfile()
                 .then(profile=>{
-                    const idElement = document.getElementById('lineid');
-                    // const idElement = document.createElement('p');
-                    const id = profile.userId;
-                    idElement.innerHTML = id;
-                    divLogin.appendChild(idElement);
+                    // const idElement = document.getElementById('lineid');
+                    // // const idElement = document.createElement('p');
+                    // const id = profile.userId;
+                    // idElement.innerHTML = id;
+                    // divLogin.appendChild(idElement);
 
                     // フォームの生成。ここにlabelとinput要素を入れていく。
                     const formElement = document.createElement('form');
