@@ -1,3 +1,5 @@
+import liff from '@line/liff';
+
 window.onload = () => {
     const myLiffId = '1655219547-VEldKEW0';
     liff
