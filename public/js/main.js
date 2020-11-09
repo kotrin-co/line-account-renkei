@@ -1,17 +1,16 @@
-import liff from '@line/liff';
-
 window.onload = () => {
+    import liff from '@line/liff';
     const myLiffId = '1655219547-VEldKEW0';
     liff
         .init({
             liffId:myLiffId
         })
         .then(()=>{
-            const divLogin = document.getElementById('login_area');
-            const idElement = document.createElement('p');
 
             liff.getProfile()
                 .then(profile=>{
+                    const divLogin = document.getElementById('login_area');
+                    const idElement = document.createElement('p');
                     const id = profile.userId;
                     idElement.innerHTML = id;
                     divLogin.appendChild(idElement);
