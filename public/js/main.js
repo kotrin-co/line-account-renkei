@@ -2,19 +2,48 @@
 const divLogin = document.getElementById('login_area');
 
 // URLの？以降を取り出し、linkTokenを取得する処理
-const param = new URL(location).search;
-console.log('param:',param);
-const pElement = document.createElement('p');
-let linkToken = '';
-if(param){
-    const splitParam = param.split('=');
-    console.log('splitparam:',splitParam);
-    linkToken = splitParam[1]; 
-}else{
-    linkToken = "0";
+// const param = new URL(location).search;
+// console.log('param:',param);
+// const pElement = document.createElement('p');
+// let linkToken = '';
+// if(param){
+//     const splitParam = param.split('=');
+//     console.log('splitparam:',splitParam);
+//     linkToken = splitParam[1]; 
+// }else{
+//     linkToken = "0";
+// }
+// pElement.innerHTML = linkToken;
+// divLogin.appendChild(pElement);
+
+//ユーザーのLINE IDを表示させるエリア
+const idElement = document.createElement('p');
+
+window.addEventListener('load',()=>{
+    const myLiffId = '1655219547-VEldKEW0';
+    initializeLiff(myLiffId);
+});
+
+const initializeLiff = (myLiffId) => {
+    liff.init({
+        liffId:myLiffId
+    })
+    .then(()=>{
+        initializeApp();
+    })
+    .catch((err)=>{
+        console.log(err)
+    });
 }
-pElement.innerHTML = linkToken;
-divLogin.appendChild(pElement);
+
+const initializeApp = () => {
+    liff.getProfile()
+        .then(profile=>{
+            const id = profile.userId;
+            idElement.innerHTML = id;
+        })
+        .catch(err=>console.log(err));
+}
 
 // フォームの生成。ここにlabelとinput要素を入れていく。
 const formElement = document.createElement('form');
