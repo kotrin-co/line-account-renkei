@@ -18,11 +18,7 @@ const divLogin = document.getElementById('login_area');
 
 //ユーザーのLINE IDを表示させるエリア
 const idElement = document.createElement('p');
-
-window.addEventListener('load',()=>{
-    const myLiffId = '1655219547-VEldKEW0';
-    initializeLiff(myLiffId);
-});
+const myLiffId = '1655219547-VEldKEW0';
 
 const initializeLiff = (myLiffId) => {
     liff.init({
@@ -120,3 +116,5 @@ formElement.appendChild(loginButton);
 
 // フォーム要素を大元のdiv要素へ格納
 divLogin.appendChild(formElement);
+
+initializeLiff(myLiffId);
