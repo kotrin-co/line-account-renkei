@@ -18,36 +18,21 @@ window.onload = () => {
 
                     fetch(`https://api.line.me/v2/bot/user/${id}/linkToken`,{
                         method:'POST',
-                        // credentials:'same-origin',
+                        credentials:'same-origin',
                         headers:{
                             'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
                         }
                     })
                     .then(response=>{
-                        if(response.ok){
-                            alert('response:',response);
-                            response.text()
-                                .then(text=>alert(text))
-                        }
+                        alert('fetch成功');
+                        // if(response.ok){
+                        //     alert('response:',response);
+                        //     response.text()
+                        //         .then(text=>alert(text))
+                        // }
                     })
                     .catch(err=>alert('fetch失敗'));
-                    // const options = {
-                    //     url:`https://api.line.me/v2/bot/user/${id}/linkToken`,
-                    //     method:'POST',
-                    //     headers:{
-                    //         'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
-                    //     },
-                    // }
-                    
-                    // request(options)
-                    //     .then(body=>{
-                    //         const parsedBody = JSON.parse(body);
-                    //         console.log('parsedBody:',parsedBody);
-                    //         console.log('linkToken:',parsedBody["linkToken"]);
-                    //         res.redirect(302,`https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`)
-                    //     });
-
-                    // フォームの生成。ここにlabelとinput要素を入れていく。
+           
                     const formElement = document.createElement('form');
                     formElement.setAttribute('id','login');
                     formElement.setAttribute('name','login_info');
