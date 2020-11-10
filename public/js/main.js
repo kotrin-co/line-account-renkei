@@ -97,7 +97,7 @@ window.onload = () => {
                 })
                 .catch(err=>console.log(err));
         })
-        .catch(err=>console.log(err));
+        .catch(err=>alert(JSON.stringify(err)));
 }
 
 
