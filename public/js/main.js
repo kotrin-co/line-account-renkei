@@ -18,7 +18,7 @@ window.onload = () => {
 
                     fetch(`https://api.line.me/v2/bot/user/${id}/linkToken`,{
                         method:'POST',
-                        credentials:'same-origin',
+                        // credentials:'same-origin',
                         headers:{
                             'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
                         }
@@ -31,7 +31,7 @@ window.onload = () => {
                         //         .then(text=>alert(text))
                         // }
                     })
-                    .catch(err=>alert('fetch失敗',err));
+                    .catch(err=>alert(err));
            
                     const formElement = document.createElement('form');
                     formElement.setAttribute('id','login');
