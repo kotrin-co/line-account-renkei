@@ -31,7 +31,7 @@ window.onload = () => {
                         //         .then(text=>alert(text))
                         // }
                     })
-                    .catch(err=>alert('fetch失敗'));
+                    .catch(err=>alert('fetch失敗',err));
            
                     const formElement = document.createElement('form');
                     formElement.setAttribute('id','login');
