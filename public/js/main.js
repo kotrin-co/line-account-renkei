@@ -1,9 +1,9 @@
 
 window.onload = () => {
+    ducument.getElementById('lineid').textContent='in';
     const myLiffId = '1655219547-VEldKEW0';
     const divLogin = document.getElementById('login_area');
     import liff from '@line/liff';
-    alert('in');
     liff
         .init({
             liffId:myLiffId
