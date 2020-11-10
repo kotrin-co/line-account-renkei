@@ -10,7 +10,7 @@ window.onload = () => {
         })
         .then(()=>{
             alert('success');
-            const idElement = ducument.getElementById('lineid');
+            const idElement = document.getElementById('lineid');
             idElement.innerHTML = liff.getLanguage();
             divLogin.appendChild(idElement);
             liff.getProfile()
