@@ -221,8 +221,9 @@ app
                         // "data":"login"
                       "type": "uri",
                       "label": "連携しますよん",
+                      "uri":"https://liff.line.me/1655219547-VEldKEW0"
                     //   "uri": `https://api.line.me/v2/bot/user/${ev.source.userId}/linkToken`
-                      "uri": "line://app/1655219547-VEldKEW0"
+                    //   "uri": "line://app/1655219547-VEldKEW0"
                     //   "uri": `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${ev.source.userId}`
                     //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                     }
