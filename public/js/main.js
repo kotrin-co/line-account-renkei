@@ -1,8 +1,8 @@
-import liff from '@line/liff';
 
 window.onload = () => {
     const myLiffId = '1655219547-VEldKEW0';
     const divLogin = document.getElementById('login_area');
+    import liff from '@line/liff';
     liff
         .init({
             liffId:myLiffId
