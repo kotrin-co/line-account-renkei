@@ -30,7 +30,7 @@ window.onload = () => {
                                 .then(text=>alert(text))
                         }
                     })
-                    .catch(err=>alert(err));
+                    .catch(err=>alert('fetch失敗'));
                     // const options = {
                     //     url:`https://api.line.me/v2/bot/user/${id}/linkToken`,
                     //     method:'POST',
