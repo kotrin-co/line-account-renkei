@@ -3,11 +3,13 @@ window.onload = () => {
     const myLiffId = '1655219547-VEldKEW0';
     const divLogin = document.getElementById('login_area');
     import liff from '@line/liff';
+    alert('in');
     liff
         .init({
             liffId:myLiffId
         })
         .then(()=>{
+            alert('success');
             const idElement = ducument.getElementById('lineid');
             idElement.innerHTML = liff.getLanguage();
             divLogin.appendChild(idElement);
