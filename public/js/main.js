@@ -3,7 +3,7 @@ window.onload = () => {
     ducument.getElementById('lineid').textContent='in';
     const myLiffId = '1655219547-VEldKEW0';
     const divLogin = document.getElementById('login_area');
-    import liff from '@line/liff';
+    // import liff from '@line/liff';
     liff
         .init({
             liffId:myLiffId
