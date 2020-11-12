@@ -132,21 +132,3 @@ window.onload = () => {
         
     }
 
-
-// 大元のdivエリア
-
-
-// URLの？以降を取り出し、linkTokenを取得する処理
-// const param = new URL(location).search;
-// console.log('param:',param);
-// const pElement = document.createElement('p');
-// let linkToken = '';
-// if(param){
-//     const splitParam = param.split('=');
-//     console.log('splitparam:',splitParam);
-//     linkToken = splitParam[1]; 
-// }else{
-//     linkToken = "0";
-// }
-// pElement.innerHTML = linkToken;
-// divLogin.appendChild(pElement);

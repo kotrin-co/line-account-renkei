@@ -273,31 +273,3 @@ const accountLink = (ev) => {
         })
         .catch(e=>console.log(e));
 }
-
-const handlePostbackEvent = (ev) => {
-
-    if(ev.postback.data === 'login'){
-
-        
-        const line_uid = ev.source.userId;
-        const https = require('https');
-        https.get(`https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${line_uid}`,(res)=>{
-            console.log('statusCode:', res.statusCode);
-            console.log('headers:', res.headers);
-            res.on('data',(d)=>{
-                process.stdout.write(d);
-            })
-        }).on('error',(e)=>{
-            console.error(e);
-        })
-    }
-    //     const options = {
-    //         url: `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${line_uid}`,
-    //         method:'GET'
-    //     }
-
-    //     request(options)
-    //         .then(body=>console.log('body:',body));
-    // }
-    
-}
