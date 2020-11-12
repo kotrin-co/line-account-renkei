@@ -3,6 +3,29 @@ window.onload = () => {
     const myLiffId = '1655219547-VEldKEW0';
     const divLogin = document.getElementById('login_area');
     // import liff from '@line/liff';
+    const fetchButton = document.createElement('input');
+    fetchButton.value = 'fetch';
+    fetchButton.type = 'button';
+
+    fetchButton.addEventListener('click',()=>{
+        fetch(`https://api.line.me/v2/bot/user/Ubca9519f029b6af8e53a9b54ffe92cae/linkToken`,{
+            method:'POST',
+            // credentials:'same-origin',
+            headers:{
+                'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
+            }
+        })
+        .then(response=>{
+            alert('fetch成功');
+            // if(response.ok){
+            //     alert('response:',response);
+            //     response.text()
+            //         .then(text=>alert(text))
+            // }
+        })
+        .catch(err=>alert(err));
+    })
+
     liff
         .init({
             liffId:myLiffId
