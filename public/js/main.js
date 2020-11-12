@@ -37,14 +37,14 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
-                    const idElement = document.getElementById('lineid');
                     const id = profile.userId;
                     // idElement.innerHTML = `https://api.line.me/v2/bot/user/${id}/linkToken`;
-                    divLogin.appendChild(idElement);
+                    
                     
                     fetch(`api/link?line_uid=${id}`,{method:'GET'})
                         .then(response=>{
-                            const queryParam = location.search;
+                            const idElement = document.getElementById('lineid');
+                            const queryParam = window.location.search;
                             idElement.innerHTML = queryParam;
 
                             const formElement = document.createElement('form');
