@@ -43,7 +43,10 @@ window.onload = () => {
                     divLogin.appendChild(idElement);
                     
                     fetch(`api/link?line_uid=${id}`,{method:'GET'})
-                        .then(response=>alert(response));
+                        .then(response=>{
+                            const queryParam = location.search;
+                            idElement.innerHTML = queryParam;
+                        });
            
                     const formElement = document.createElement('form');
                     formElement.setAttribute('id','login');
