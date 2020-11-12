@@ -44,9 +44,8 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${id}`,{method:'GET'})
                         .then(response=>{
                             const idElement = document.getElementById('lineid');
-                            const queryParam = window.location.search;
+                            const queryParam = window.location.href;
                             idElement.innerHTML = queryParam;
-                            const data = response.json();
                             alert(data);
 
                             const formElement = document.createElement('form');
