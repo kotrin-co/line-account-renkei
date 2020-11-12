@@ -45,7 +45,7 @@ window.onload = () => {
                         .then(response=>{
                             const idElement = document.getElementById('lineid');
                             // const queryParam = window.location.href;
-                            idElement.innerHTML = queryParam;
+                            // idElement.innerHTML = queryParam;
 
                             response.text()
                                 .then(text=>alert(text));
