@@ -8,7 +8,7 @@ window.onload = () => {
     fetchButton.type = 'button';
 
     fetchButton.addEventListener('click',()=>{
-        fetch(`https://api.line.me/v2/bot/user/Ubca9519f029b6af8e53a9b54ffe92cae/linkToken`,{
+        fetch(`/api/link?line_uid=Ubca9519f029b6af8e53a9b54ffe92cae`,{
             method:'POST',
             mode:'cors',
             // credentials:'same-origin',

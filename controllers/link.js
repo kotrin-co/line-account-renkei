@@ -4,6 +4,7 @@ module.exports = {
 
     accountLink: (req,res) => {
         const line_uid = req.query.line_uid;
+        console.log('line_uid:',line_uid);
         const options = {
             url:`https://api.line.me/v2/bot/user/${line_uid}/linkToken`,
             method:'POST',

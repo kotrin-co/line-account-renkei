@@ -10,7 +10,6 @@ const linkRouter = require('./routers/link');
 const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
-const cors = require('cors');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -53,7 +52,6 @@ connection.query(create_nonceTable)
 
 app
    .use(express.static(path.join(__dirname, 'public')))
-   .use(cors())
    .use(multipart())
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
