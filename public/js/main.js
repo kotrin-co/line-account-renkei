@@ -16,22 +16,32 @@ window.onload = () => {
                     idElement.innerHTML = `https://api.line.me/v2/bot/user/${id}/linkToken`;
                     divLogin.appendChild(idElement);
 
-                    fetch(`https://api.line.me/v2/bot/user/${id}/linkToken`,{
-                        method:'POST',
-                        // credentials:'same-origin',
-                        headers:{
-                            'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
-                        }
+                    const fetchButton = document.createElement('input');
+                    fetchButton.value = 'fetch';
+                    fetchButton.type = 'button';
+
+                    fetchButton.addEventListener('click',()=>{
+                        fetch(`https://api.line.me/v2/bot/user/${id}/linkToken`,{
+                            method:'POST',
+                            // credentials:'same-origin',
+                            headers:{
+                                'Authorization':'Bearer /hwe0EhoKLsy2P1ynqJOWH3TWytYYrqlO6w9cPiDVjdJwwx2NoPosK98vovYkAH5Xu1oqYvpY8Fmr6/kE3maBr/zjr7I4MQ1az2puov0vg0CWmNgCQSulsMJd0yOqR2ruchBI0Uwntg7fE8tCgdWDQdB04t89/1O/w1cDnyilFU='
+                            }
+                        })
+                        .then(response=>{
+                            alert('fetch成功');
+                            // if(response.ok){
+                            //     alert('response:',response);
+                            //     response.text()
+                            //         .then(text=>alert(text))
+                            // }
+                        })
+                        .catch(err=>alert(err));
                     })
-                    .then(response=>{
-                        alert('fetch成功');
-                        // if(response.ok){
-                        //     alert('response:',response);
-                        //     response.text()
-                        //         .then(text=>alert(text))
-                        // }
-                    })
-                    .catch(err=>alert(err));
+
+                    divLogin.appendChild(fetchButton);
+
+                    
            
                     const formElement = document.createElement('form');
                     formElement.setAttribute('id','login');
