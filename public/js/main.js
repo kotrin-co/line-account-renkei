@@ -26,6 +26,8 @@ window.onload = () => {
         .catch(err=>alert(err));
     })
 
+    divLogin.appendChild(fetchButton);
+
     liff
         .init({
             liffId:myLiffId
