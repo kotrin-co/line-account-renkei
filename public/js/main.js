@@ -17,12 +17,12 @@ window.onload = () => {
             }
         })
         .then(response=>{
-            alert('fetch成功');
-            // if(response.ok){
-            //     alert('response:',response);
-            //     response.text()
-            //         .then(text=>alert(text))
-            // }
+            console.log('response:',response);
+            if(response.ok){
+                alert('response:',response);
+                response.text()
+                    .then(text=>alert(text))
+            }
         })
         .catch(err=>alert(err));
     })
