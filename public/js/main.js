@@ -46,7 +46,6 @@ window.onload = () => {
                             const idElement = document.getElementById('lineid');
                             const queryParam = window.location.href;
                             idElement.innerHTML = queryParam;
-                            alert(data);
 
                             const formElement = document.createElement('form');
                             formElement.setAttribute('id','login');
