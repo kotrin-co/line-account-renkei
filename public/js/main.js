@@ -37,18 +37,18 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
-                    const id = profile.userId;
-                    // idElement.innerHTML = `https://api.line.me/v2/bot/user/${id}/linkToken`;
-                    
+                    const id = profile.userId;                  
                     
                     fetch(`api/link?line_uid=${id}`,{method:'GET'})
                         .then(response=>{
                             const idElement = document.getElementById('lineid');
                             // const queryParam = window.location.href;
 
+                            let linkToken ='';
                             response.text()
                                 .then(text=>{
-                                    idElement.innerHTML = text;
+                                    linkToken = text;
+                                    idElement.innerHTML = linkToken;
                                 });
 
                             const formElement = document.createElement('form');
@@ -90,16 +90,12 @@ window.onload = () => {
                             loginButton.value = 'ログイン';
                             loginButton.type = 'button';
                             loginButton.addEventListener('click',()=>{
-                                // const id = document.login_info.id.value + '&' +linkToken;
-                                // document.login_info.id.value = id;
-                                // formElement.submit();
                                 const data = new FormData(formElement);
                                 data.append('linkToken',linkToken);
                                 console.log(...data.entries());
 
                                 fetch('/api/users/login',{
                                     method:'POST',
-                                    // mode: 'no-cors',
                                     body: data,
                                     credentials: 'same-origin'
                                 })
