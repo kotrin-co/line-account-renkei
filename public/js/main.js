@@ -44,8 +44,11 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${id}`,{method:'GET'})
                         .then(response=>{
                             const idElement = document.getElementById('lineid');
-                            const queryParam = window.location.href;
+                            // const queryParam = window.location.href;
                             idElement.innerHTML = queryParam;
+
+                            response.text()
+                                .then(text=>alert(text));
 
                             const formElement = document.createElement('form');
                             formElement.setAttribute('id','login');
